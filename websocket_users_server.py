@@ -12,9 +12,9 @@ async def echo(websocket: ServerConnection):
 
 
 
-        for  in range(5):
-            response = f"Сообщение пользователя: {message}"  # Формируем ответное сообщение
-            await websocket.send(response)
+    for i in range(5):
+        response = f"{i}Сообщение пользователя: {message}"  # Формируем ответное сообщение
+        await websocket.send(response)
 
 # Запуск WebSocket-сервера на порту 8765
 async def main():
