@@ -5,36 +5,6 @@ from httpx import Response
 from clients.api_client import APIClient
 from clients.private_http_builder import AuthenticationUserDict, get_private_http_client
 
-class GetExercisesQueryDict(TypedDict):
-    """
-    Описание структуры запроса на получение списка заданий.
-    """
-    courseId: str
-
-
-class CreateExerciseRequestDict(TypedDict):
-    """
-    Описание структуры запроса на создание задания.
-    """
-    title: str
-    courseId: str
-    maxScore: int
-    minScore: int
-    orderIndex: int
-    description: str
-    estimatedTime: str
-
-
-class UpdateExerciseRequestDict(TypedDict):
-    """
-    Описание структуры запроса на обновление задания.
-    """
-    title: str | None
-    maxScore: int | None
-    minScore: int | None
-    orderIndex: int | None
-    description: str | None
-    estimatedTime: str | None
 
 class Exercise(TypedDict):
     """
@@ -49,20 +19,58 @@ class Exercise(TypedDict):
     description: str
     estimatedTime: str
 
+
+class GetExerciseResponseDict(TypedDict):
+    exercise: Exercise
+
+
+class GetExercisesQueryDict(TypedDict):
+    """
+    Описание структуры запроса на получение списка заданий.
+    """
+    courseId: str
+
+
 class GetExercisesResponseDict(TypedDict):
     exercises: list[Exercise]
 
-class GetExerciseResponseDict(TypedDict):
-    exercises: list[Exercise]
+class CreateExerciseRequestDict(TypedDict):
+    """
+    Описание структуры запроса на создание задания.
+    """
+    title: str
+    courseId: str
+    maxScore: int
+    minScore: int
+    orderIndex: int
+    description: str
+    estimatedTime: str
 
 class CreateExerciseResponseDict(TypedDict):
-    exercises: list[Exercise]
+    """
+    Описание структуры ответа создания задания.
+    """
+    exercise: Exercise
+
+
+class UpdateExerciseRequestDict(TypedDict):
+    """
+    Описание структуры запроса на обновление задания.
+    """
+    title: str | None
+    maxScore: int | None
+    minScore: int | None
+    orderIndex: int | None
+    description: str | None
+    estimatedTime: str | None
+
 
 class UpdateExerciseResponseDict(TypedDict):
-    exercises: list[Exercise]
+    """
+    Описание структуры ответа обновления задания.
+    """
+    exercise: Exercise
 
-class DeleteExerciseResponseDict(TypedDict):
-    exercises: list[Exercise]
 
 class ExercisesClient(APIClient):
     """
@@ -123,16 +131,16 @@ class ExercisesClient(APIClient):
         response = self.get_exercises_api(query)
         return response.json()
 
+    def get_exercise(self, exercise_id: str) -> GetExerciseResponseDict:
+        response = self.get_exercise_api(exercise_id)
+        return response.json()
+
     def create_exercise(self, request: CreateExerciseRequestDict) -> CreateExerciseResponseDict:
         response = self.create_exercise_api(request)
         return response.json()
 
     def update_exercise(self, exercise_id: str, request: UpdateExerciseRequestDict) -> UpdateExerciseResponseDict:
         response = self.update_exercise_api(exercise_id, request)
-        return response.json()
-
-    def delete_exercise(self, exercise_id: str) -> DeleteExerciseResponseDict:  # исправлен тип возврата
-        response = self.delete_exercise_api(exercise_id)
         return response.json()
 
 
