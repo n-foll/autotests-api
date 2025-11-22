@@ -3,7 +3,7 @@ from typing import TypedDict
 from httpx import Response
 
 from clients.api_client import APIClient
-from clients.private_http_builder import AuthenticationUserDict, get_private_http_client
+from clients.private_http_builder import AuthenticationUserSchema, get_private_http_client
 
 
 class Exercise(TypedDict):
@@ -131,10 +131,6 @@ class ExercisesClient(APIClient):
         response = self.get_exercises_api(query)
         return response.json()
 
-    def get_exercise(self, exercise_id: str) -> GetExerciseResponseDict:
-        response = self.get_exercise_api(exercise_id)
-        return response.json()
-
     def create_exercise(self, request: CreateExerciseRequestDict) -> CreateExerciseResponseDict:
         response = self.create_exercise_api(request)
         return response.json()
@@ -144,7 +140,7 @@ class ExercisesClient(APIClient):
         return response.json()
 
 
-def get_exercises_client(user: AuthenticationUserDict) -> ExercisesClient:
+def get_exercises_client(user: AuthenticationUserSchema) -> ExercisesClient:
     """
     Функция создаёт экземпляр ExercisesClient с уже настроенным HTTP-клиентом.
 
