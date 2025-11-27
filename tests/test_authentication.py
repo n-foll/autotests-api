@@ -11,7 +11,7 @@ from tools.assertions.base import assert_status_code
 from tools.assertions.authentication import assert_login_response
 
 
-@pytest.mark.authentication  # Добавили маркировку users
+@pytest.mark.authentication
 @pytest.mark.regression
 def test_login():
 
