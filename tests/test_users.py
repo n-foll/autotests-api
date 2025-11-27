@@ -1,5 +1,7 @@
 from http import HTTPStatus
 
+import pytest  # Импортируем библиотеку pytest
+
 from clients.users.public_users_client import get_public_users_client
 from clients.users.users_schema import CreateUserRequestSchema, CreateUserResponseSchema
 # Импортируем функцию для валидации JSON Schema
@@ -9,7 +11,8 @@ from tools.assertions.base import assert_status_code
 # Импортируем функцию для проверки ответа создания юзера
 from tools.assertions.users import assert_create_user_response
 
-
+@pytest.mark.users  # Добавили маркировку users
+@pytest.mark.regression  # Добавили маркировку regression
 def test_create_user():
     # Инициализируем API-клиент для работы с пользователями
     public_users_client = get_public_users_client()
