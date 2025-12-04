@@ -11,16 +11,22 @@ from tools.assertions.schema import validate_json_schema
 from tools.assertions.base import assert_status_code
 # Импортируем функцию для проверки ответа создания юзера
 from tools.assertions.users import assert_create_user_response, assert_get_user_response
-from tests.conftest import UserFixture
+from fixtures.users import UserFixture
+from tools.fakers import fake
 
-
-
+domein = {
+    "mail.ru",
+    "gmail.com",
+    "example.com"
+}
+@pytest.mark.parametrize("email_domain", domein)
 @pytest.mark.users  # Добавили маркировку users
 @pytest.mark.regression  # Добавили маркировку regression
-def test_create_user(public_users_client: PublicUsersClient):
+def test_create_user(email_domain:str,  public_users_client: PublicUsersClient):
 
+    user_email = fake.email(domain=email_domain)
     # Формируем тело запроса на создание пользователя
-    request = CreateUserRequestSchema()
+    request = CreateUserRequestSchema(email=user_email)
     # Отправляем запрос на создание пользователя
     response = public_users_client.create_user_api(request)
     # Инициализируем модель ответа на основе полученного JSON в ответе
