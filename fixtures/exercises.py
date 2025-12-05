@@ -1,9 +1,10 @@
 import pytest
+from pydantic import BaseModel
 
 from clients.exercises.exercises_client import ExercisesClient, get_exercises_client
-from fixtures.courses import function_course
-from pydantic import BaseModel
 from clients.exercises.exercises_schema import CreateExerciseRequestSchema, CreateExerciseResponseSchema
+from fixtures.courses import CourseFixture
+from fixtures.users import UserFixture
 
 
 
@@ -13,14 +14,15 @@ class ExerciseFixture(BaseModel):
 
 
 @pytest.fixture(scope="function")
-def exercises_client () -> ExercisesClient:
-    client  = get_exercises_client
-    return client
+def exercises_client (function_user: UserFixture) -> ExercisesClient:
+    return get_exercises_client(function_user.authentication_user)
 
 @pytest.fixture(scope="function")
-def function_exercise (exercises_client, function_course) -> ExerciseFixture:
+def function_exercise (
+        exercises_client: ExercisesClient,
+        function_course: CourseFixture
+) -> ExerciseFixture:
     request = CreateExerciseRequestSchema(course_id=function_course.response.course.id)
     response = exercises_client.create_exercise(request)
-
     return ExerciseFixture(request=request, response=response)
 
