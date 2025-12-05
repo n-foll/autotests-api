@@ -8,7 +8,6 @@ from clients.exercises.exercises_schema import CreateExerciseRequestSchema, Crea
 
 
 class ExerciseFixture(BaseModel):
-    """Контейнер для данных тестового задания."""
     request: CreateExerciseRequestSchema
     response: CreateExerciseResponseSchema
 
