@@ -18,7 +18,6 @@ class TestExercises:
             self,
             function_course: CourseFixture,
             exercises_client:ExercisesClient,
-            function_exercise: ExerciseFixture
     ):
         query= CreateExerciseRequestSchema(course_id=function_course.response.course.id)
         response = exercises_client.create_exercise_api(query)
