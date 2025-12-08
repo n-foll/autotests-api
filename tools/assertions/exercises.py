@@ -1,5 +1,7 @@
-from clients.exercises.exercises_schema import CreateExerciseRequestSchema, CreateExerciseResponseSchema
-from tools.assertions.base import assert_equal
+from clients.exercises.exercises_schema import CreateExerciseRequestSchema, CreateExerciseResponseSchema, \
+    GetExerciseResponseSchema
+from tools.assertions.base import assert_equal, assert_length
+from clients.exercises.exercises_schema import ExerciseSchema
 
 
 def assert_create_exercise_response(
@@ -20,3 +22,40 @@ def assert_create_exercise_response(
     assert_equal(response.exercise.order_index, request.order_index, "order_index")
     assert_equal(response.exercise.description, request.description, "description")
     assert_equal(response.exercise.estimated_time, request.estimated_time, "estimated_time")
+
+def assert_exercise(
+        actual: ExerciseSchema,
+        expected:ExerciseSchema
+):
+    """
+        Проверяет, что фактические данные задания соответствуют ожидаемым.
+
+        :param actual: Фактические данные курса.
+        :param expected: Ожидаемые данные курса.
+        :raises AssertionError: Если хотя бы одно поле не совпадает.
+    """
+    assert_equal(actual.id, expected.id, "id")
+    assert_equal(actual.title, expected.title, "title")
+    assert_equal(actual.course_id, expected.course_id, "course_id")
+    assert_equal(actual.max_score, expected.max_score, "max_score")
+    assert_equal(actual.min_score, expected.min_score, "min_score")
+    assert_equal(actual.order_index, expected.order_index, "order_index")
+    assert_equal(actual.description, expected.description, "description")
+    assert_equal(actual.estimated_time, expected.estimated_time, "estimated_time")
+
+
+def assert_get_exercise_response(
+        actual_response: GetExerciseResponseSchema,
+        expected_response: CreateExerciseResponseSchema
+):
+    """
+    Проверяет, что ответ на получение задания соответствует ответу на его создание.
+
+    :param actual_response: Ответ API при запросе задания.
+    :param expected_response: Ответ API при создании задания.
+    :raises AssertionError: Если данные задания не совпадают
+    """
+    assert actual_response.exercise is not None
+    assert expected_response.exercise is not None
+
+    assert_exercise(actual_response.exercise, expected_response.exercise)
