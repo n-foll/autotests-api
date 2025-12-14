@@ -1,6 +1,7 @@
 from http import HTTPStatus
 
 import pytest  # Импортируем библиотеку pytest
+import allure
 
 from clients.users.public_users_client import PublicUsersClient
 from clients.users.private_users_client import PrivateUsersClient
@@ -23,7 +24,7 @@ domein = {
 @pytest.mark.users  # Добавили маркировку users
 @pytest.mark.regression  # Добавили маркировку regression
 class TestUsers:
-
+    @allure.title("Create user")
     @pytest.mark.parametrize("email", ["mail.ru", "gmail.com", "example.com"])
     def test_create_user(self, email: str, public_users_client: PublicUsersClient):
         # Формируем тело запроса на создание пользователя
@@ -40,6 +41,7 @@ class TestUsers:
         # Проверяем, что тело ответа соответствует ожидаемой JSON-схеме
         validate_json_schema(response.json(), response_data.model_json_schema())
 
+    @allure.title("Get user me")
     def test_get_user_me(
             self,
             function_user: UserFixture,
