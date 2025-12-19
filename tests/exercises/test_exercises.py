@@ -1,10 +1,15 @@
 import pytest
 import allure
 from http import HTTPStatus
+from allure_commons.types import Severity
 
 
 from clients.exercises.exercises_client import ExercisesClient
 from fixtures.courses import CourseFixture
+from tools.allure.epics import AllureEpic  # Импортируем enum AllureEpic
+from tools.allure.features import AllureFeature  # Импортируем enum AllureFeature
+from tools.allure.stories import AllureStory  # Импортируем enum AllureStory
+from tools.allure.tags import AllureTag
 from fixtures.exercises import ExerciseFixture, exercises_client
 from clients.exercises.exercises_schema import CreateExerciseRequestSchema, CreateExerciseResponseSchema, \
     GetExerciseResponseSchema, UpdateExerciseRequestSchema, UpdateExerciseResponseSchema, GetExercisesQuerySchema, \
@@ -18,8 +23,16 @@ from clients.errors_schema import InternalErrorResponseSchema
 
 @pytest.mark.exercises
 @pytest.mark.regression
+@allure.tag(AllureTag.EXERCISES, AllureTag.REGRESSION)
+@allure.epic(AllureEpic.LMS)  # Добавили epic
+@allure.feature(AllureFeature.EXERCISES)  # Добавили feature
+@allure.parent_suite(AllureEpic.LMS)  # allure.parent_suite == allure.epic
+@allure.suite(AllureFeature.EXERCISES)
 class TestExercises:
     @allure.title("Create exercise")
+    @allure.severity(Severity.BLOCKER)
+    @allure.story(AllureStory.CREATE_ENTITY)
+    @allure.sub_suite(AllureStory.CREATE_ENTITY)
     def test_create_exercise(
             self,
             function_course: CourseFixture,
@@ -36,7 +49,10 @@ class TestExercises:
 
         validate_json_schema(response.json(), response_data.model_json_schema())
 
+    @allure.tag(AllureTag.GET_ENTITY)
     @allure.title("Get exercise")
+    @allure.story(AllureStory.GET_ENTITY)  # Добавили story
+    @allure.sub_suite(AllureStory.GET_ENTITY)
     def test_get_exercise(
             self,
             function_exercise: ExerciseFixture,
@@ -57,7 +73,10 @@ class TestExercises:
 
         validate_json_schema(response.json(), response_data.model_json_schema())
 
+    @allure.tag(AllureTag.UPDATE_ENTITY)
     @allure.title("Update exercise")
+    @allure.story(AllureStory.UPDATE_ENTITY)  # Добавили story
+    @allure.sub_suite(AllureStory.UPDATE_ENTITY)
     def test_update_exercise (
             self,
             function_exercise: ExerciseFixture,
@@ -75,7 +94,10 @@ class TestExercises:
 
         validate_json_schema(response.json(), response_data.model_json_schema())
 
+    @allure.tag(AllureTag.DELETE_ENTITY)
     @allure.title("Delete exercise")
+    @allure.story(AllureStory.DELETE_ENTITY)  # Добавили story
+    @allure.sub_suite(AllureStory.DELETE_ENTITY)
     def test_delete_exercise(
             self,
             function_exercise: ExerciseFixture,
@@ -92,7 +114,10 @@ class TestExercises:
 
         validate_json_schema(get_response.json(), get_response_data.model_json_schema())
 
+    @allure.tag(AllureTag.GET_ENTITIES)
     @allure.title("Get exercises")
+    @allure.story(AllureStory.GET_ENTITIES)  # Добавили story
+    @allure.sub_suite(AllureStory.GET_ENTITIES)
     def test_get_exercises(
             self,
             function_exercise: ExerciseFixture,
