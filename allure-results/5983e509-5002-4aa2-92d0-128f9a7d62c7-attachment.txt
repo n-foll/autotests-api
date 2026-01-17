@@ -1,0 +1,11 @@
+curl -X 'PATCH' \
+  'http://localhost:8000/api/v1/courses/effcdbf1-5baa-4393-b0cb-3c27f5394c65' \
+  -H 'host: localhost:8000' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmUiOiIyMDI2LTAxLTE1VDIyOjM4OjA5LjA4MTA5MiIsInVzZXJfaWQiOiJhY2ZkZDg1MC04NTA1LTQ2MzQtYjJlYy05YzUwY2U5YjYwYTcifQ.mMxezAMELpQFWsHBl30qIiY0eZvZAwp9wPNm3DkZ_e0' \
+  -H 'content-length: 302' \
+  -H 'content-type: application/json' \
+  -d '{"title":"Mr yourself today field cause data hand.","maxScore":64,"minScore":21,"description":"Reason safe billion reach figure.\nSomething local particular seem list citizen any. Fear place available ball consumer difference. Rest financial tell air effort activity former.","estimatedTime":"6 weeks"}'

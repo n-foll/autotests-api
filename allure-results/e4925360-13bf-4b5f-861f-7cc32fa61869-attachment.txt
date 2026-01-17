@@ -1,0 +1,11 @@
+curl -X 'POST' \
+  'http://localhost:8000/api/v1/courses' \
+  -H 'host: localhost:8000' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmUiOiIyMDI2LTAxLTE1VDIyOjM4OjAwLjY4MTE0MSIsInVzZXJfaWQiOiIzNTY0Yjg3My02OTg3LTRlZGQtYWM5YS01NGFlZjFjMjg5MzUifQ.28TD_tlAyK6SFeBQYSKs6kxvaKyJ6wszbYp_l5Vq5PI' \
+  -H 'content-length: 432' \
+  -H 'content-type: application/json' \
+  -d '{"title":"Too throughout onto conference practice.","maxScore":55,"minScore":1,"description":"You unit technology identify. Wish take task foot simple. Serious evening girl media military send. Maintain when keep able member.\nPolice purpose trade unit. Movie million program natural morning.","estimatedTime":"5 weeks","previewFileId":"d1002a30-68eb-4211-8eda-373d41fefc72","createdByUserId":"3564b873-6987-4edd-ac9a-54aef1c28935"}'

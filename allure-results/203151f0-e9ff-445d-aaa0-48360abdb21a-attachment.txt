@@ -1,0 +1,11 @@
+curl -X 'POST' \
+  'http://localhost:8000/api/v1/courses' \
+  -H 'host: localhost:8000' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmUiOiIyMDI2LTAxLTE1VDIyOjM4OjI1LjU3NzgyMyIsInVzZXJfaWQiOiIxODdhOTg1MS1mYjVjLTQzMDUtYTMzYS1jM2Q3N2I3OTE3OGEifQ.5o6FmCnDbA9iloI5UXPdPmw8PilyGm-NJt1P5nqDB1g' \
+  -H 'content-length: 402' \
+  -H 'content-type: application/json' \
+  -d '{"title":"Health hit oil anyone.","maxScore":75,"minScore":7,"description":"Reflect majority tough benefit eat account. Edge physical accept keep serve firm before.\nPick who want spring pay region. With cover campaign. Learn far computer energy cold throughout.","estimatedTime":"9 weeks","previewFileId":"466d4868-f78e-4d63-8c9e-61138d8e4d0f","createdByUserId":"187a9851-fb5c-4305-a33a-c3d77b79178a"}'

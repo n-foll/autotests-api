@@ -1,0 +1,11 @@
+curl -X 'PATCH' \
+  'http://localhost:8000/api/v1/exercises/c20eb6b6-8901-41cd-b1b1-5371b6e3488a' \
+  -H 'host: localhost:8000' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmUiOiIyMDI2LTAxLTE1VDIyOjM4OjQyLjEyMTY1NCIsInVzZXJfaWQiOiIwOWM5ODhiZC04MzYxLTQ4NGMtOWE2Yy0zZjJjNDY4MDM4MDQifQ.qZOkhEdLeyWXPy-OBi4gtQaIHIclIS22c72AvI0bUco' \
+  -H 'content-length: 288' \
+  -H 'content-type: application/json' \
+  -d '{"title":"Because together arrive catch.","maxScore":51,"minScore":22,"orderIndex":49,"description":"Window process collection recent miss the per.\nTask spring remember or church capital. Shoulder minute culture agent focus then face. Popular challenge plant.","estimatedTime":"7 weeks"}'
